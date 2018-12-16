@@ -1,0 +1,15 @@
+<section id="news">
+  <div class="container" style="padding-bottom:20px;">
+      <h2><?= $newsData->title ?></h5>
+      <h5><?= $newsData->created_at ?> </h3>
+      <p><?= $newsData->description ?></p>
+  </div>
+  <?php
+  echo $this->tag->linkTo([
+      "news",
+      'Back',
+      "class" => "btn btn-primary",
+      "title" => "Back"
+  ]);
+   ?>
+</section>

@@ -1,0 +1,26 @@
+<section id="archive">
+  <div class="container" style="padding-bottom:20px;">
+    <p style="font-size:30px"> Archive </p>
+    <div class="row">
+      <?php foreach ($newsData as $key => $news) { ?>
+      <div class="col-lg-4 col-md-4 d-flex align-items-center">
+        <div class="card h-100 " style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title "><?= $news->title ?></h5>
+            <p class="card-text "><?php $pos=strpos($news->description,' ', 95); echo substr($news->description,0,$pos ); ?></p>
+            <?php
+                  $id = str_replace(array("'",'%'),array('%27',"'"),urlencode($this->crypt->encryptBase64($news->id)));
+                  echo $this->tag->linkTo([
+                      "news/detail/".$id,
+                      'Read More',
+                      "title" => "Read More",
+                  ]);
+              ?>
+
+          </div>
+        </div>
+      </div>
+      <?php } ?>
+    </div>
+  </div>
+</section>

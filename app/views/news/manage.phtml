@@ -1,0 +1,47 @@
+<div class="container">
+    <h3><i class="fa fa-cogs"></i> Manage Article</h3>
+    <!-- Show Flash Session Data -->
+    <p><?= $this->flashSession->output() ?></p>
+
+    <?php if (!empty($newsData->count())) { ?>
+        <table class="table table-hover table-sm table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                    <?php foreach ($newsData as $key => $news) { ?>
+                        <tr>
+                            <th scope="row"><?= ++$key ?></th>
+                            <td style="max-width: 150px;"><?= $news->title ?></td>
+                            <td class="text-truncate" style="max-width: 380px;"><?= $news->description ?></td>
+                            <td style="max-width:90px;">
+                              <?php
+                                    $id = str_replace(array("'",'%'),array('%27',"'"),urlencode($this->crypt->encryptBase64($news->id)));
+                                    echo $this->tag->linkTo([
+                                        "news/edit/".$id,
+                                        'Edit',
+                                        "class" => "btn btn-primary",
+                                        "title" => "Edit"
+                                    ]);
+                                    echo "&nbsp";
+                                    echo $this->tag->linkTo([
+                                        "news/delete/".$id,
+                                        'Delete',
+                                        "class" => "btn btn-danger",
+                                        "onclick" => "return confirm('Are you sure?')",
+                                        "title" => "Delete"
+                                    ]);
+                                ?>
+                            </td>
+                        <tr>
+                    <?php } ?>
+            </tbody>
+        </table>
+    <?php }  ?>
+        </div>
+</div>

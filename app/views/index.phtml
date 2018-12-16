@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <title>Claudia Nathasia Jason</title>
+        <link rel="stylesheet" href="<?php echo $this->url->get('css/bootstrap.min.css')?>">
+        <link rel="stylesheet" href="<?php echo $this->url->get('css/style.css')?>">
+        <link rel="stylesheet" href="<?php echo $this->url->get('css/custom.css')?>">
+        <link rel="shortcut icon" type="image/x-icon" href="<?php echo $this->url->get('img/favicon.ico')?>"/>
+
+        <script src="<?php echo $this->url->get('js/jquery-3.3.1.min.js')?>"></script>
+    </head>
+
+    <body>
+      <!--header -->
+      <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+      <div class="container">
+      <nav class="navbar  fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="<?php echo $this->url->get('news')?>">Claudia</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                  <li class="nav-item">
+                    <?php
+                    if ($this->session->has('IS_LOGIN'))
+                    {
+                      echo $this->tag->linkTo([
+                          "news",
+                          'Home',
+                          "class" => "nav-link"
+                      ]);
+                    }
+                    ?>
+                  </li>
+                  <li class="nav-item">
+                    <?php
+                    if ($this->session->has('IS_LOGIN'))
+                    {
+                      echo $this->tag->linkTo([
+                          "news/archive",
+                          'Archive',
+                          "class" => "nav-link"
+                      ]);
+                    }
+                    ?>
+                  </li>
+                <li class="nav-item">
+                  <?php
+                  if ($this->session->has('IS_LOGIN'))
+                  {
+                    echo $this->tag->linkTo([
+                        "news/create",
+                        'Create News',
+                        "class" => "nav-link"
+                    ]);
+                  }
+                  ?>
+                </li>
+                <li class="nav-item">
+                  <?php
+                  if ($this->session->has('IS_LOGIN'))
+                  {
+                      echo $this->tag->linkTo([
+                          "news/manage",
+                          'Manage News',
+                          "class" => "nav-link"
+                      ]);
+                  }
+                  ?>
+                </li>
+
+                <li class="nav-item">
+                  <?php
+                  if ($this->session->has('IS_LOGIN'))
+                  {
+                    echo $this->tag->linkTo([
+                      "admin/logout",
+                      'Logout',
+                      "class" => "nav-link"
+                    ]);
+                  }
+                ?>
+                </li>
+                </ul>
+            </div>
+        </nav>
+      </div>
+
+
+        <div class="container" style="margin-top:100px;">
+          <?php echo $this->getContent(); ?>
+        </div>
+        <!-- jQuery first, then Popper.js, and then Bootstrap's JavaScript -->
+        <script src="<?php echo $this->url->get('js/popper.min.js')?>"></script>
+        <script src="<?php echo $this->url->get('js/bootstrap.min.js')?>"></script>
+        <script src="<?php echo $this->url->get('js/custom.js')?>"></script>
+  </body>
+</html>
